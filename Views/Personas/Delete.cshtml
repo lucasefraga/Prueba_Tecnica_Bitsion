@@ -1,0 +1,88 @@
+﻿@model Prueba_Tecnica_Bitsion.Models.Persona
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Persona</h2>
+
+<h3>¿Esta seguro que desea Eliminar a esta Persona?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manejar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manejar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lentes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lentes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diabetes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diabetes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Otras_Enfermedades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Otras_Enfermedades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoPersona.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPersona.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero1.Nombre)
+        </dt>
+
+        <dd>
+            Género
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Prueba_Tecnica_Bitsion.Models.Persona>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personas Registradas</h2>
+
+<p>
+    @Html.ActionLink("Registrar Persona", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manejar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lentes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diabetes)
+        </th>
+        <th>
+            Otras Enfermedades
+        </th>
+        <th>
+            Estado Actual
+        </th>
+        <th>
+            Género
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manejar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lentes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diabetes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Otras_Enfermedades)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoPersona.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genero1.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

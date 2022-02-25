@@ -1,0 +1,82 @@
+﻿@model Prueba_Tecnica_Bitsion.Models.Persona
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manejar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manejar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lentes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lentes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diabetes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diabetes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Otras_Enfermedades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Otras_Enfermedades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoPersona.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPersona.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero1.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

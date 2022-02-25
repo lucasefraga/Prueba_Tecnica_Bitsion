@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Prueba_Tecnica_BitsionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EstadoPersona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genero" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Manejar" Type="bit" Nullable="false" />
+          <Property Name="Lentes" Type="bit" Nullable="false" />
+          <Property Name="Diabetes" Type="bit" Nullable="false" />
+          <Property Name="Otras Enfermedades" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Persona_EstadoPersona">
+          <End Role="EstadoPersona" Type="Self.EstadoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="Genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Prueba_Tecnica_BitsionModelStoreContainer">
+          <EntitySet Name="EstadoPersona" EntityType="Self.EstadoPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Persona_EstadoPersona" Association="Self.FK_Persona_EstadoPersona">
+            <End Role="EstadoPersona" EntitySet="EstadoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Genero" Association="Self.FK_Persona_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Prueba_Tecnica_BitsionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EstadoPersona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_EstadoPersona" FromRole="EstadoPersona" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Genero" FromRole="Genero" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Genero" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="Manejar" Type="Boolean" Nullable="false" />
+          <Property Name="Lentes" Type="Boolean" Nullable="false" />
+          <Property Name="Diabetes" Type="Boolean" Nullable="false" />
+          <Property Name="Otras_Enfermedades" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EstadoPersona" Relationship="Self.FK_Persona_EstadoPersona" FromRole="Persona" ToRole="EstadoPersona" />
+          <NavigationProperty Name="Genero1" Relationship="Self.FK_Persona_Genero" FromRole="Persona" ToRole="Genero" />
+        </EntityType>
+        <Association Name="FK_Persona_EstadoPersona">
+          <End Role="EstadoPersona" Type="Self.EstadoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="Genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Prueba_Tecnica_BitsionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EstadoPersona" EntityType="Self.EstadoPersona" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <AssociationSet Name="FK_Persona_EstadoPersona" Association="Self.FK_Persona_EstadoPersona">
+            <End Role="EstadoPersona" EntitySet="EstadoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Genero" Association="Self.FK_Persona_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Prueba_Tecnica_BitsionModelStoreContainer" CdmEntityContainer="Prueba_Tecnica_BitsionEntities">
+          <EntitySetMapping Name="EstadoPersona">
+            <EntityTypeMapping TypeName="Prueba_Tecnica_BitsionModel.EstadoPersona">
+              <MappingFragment StoreEntitySet="EstadoPersona">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="Prueba_Tecnica_BitsionModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="Prueba_Tecnica_BitsionModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Manejar" ColumnName="Manejar" />
+                <ScalarProperty Name="Lentes" ColumnName="Lentes" />
+                <ScalarProperty Name="Diabetes" ColumnName="Diabetes" />
+                <ScalarProperty Name="Otras_Enfermedades" ColumnName="Otras Enfermedades" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
